@@ -34,7 +34,9 @@ public class UIDriverExtention implements BeforeEachCallback, AfterEachCallback,
   public void beforeEach(ExtensionContext extensionContext) throws Exception {
 
     driver = new WebDriverFactory().create();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
+    driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 
     Set<Field> fieldsToInject = getAnnotatedFields(Driver.class, extensionContext);
 

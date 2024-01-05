@@ -3,8 +3,8 @@ import extensions.UIDriverExtention;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.MainPage;
 
 @ExtendWith(UIDriverExtention.class)
 public class CoursesCatalog_Test {
@@ -12,19 +12,20 @@ public class CoursesCatalog_Test {
   @Driver
   private WebDriver driver;
 
-  String url = "https://otus.ru/";
+  private MainPage mainPage;
 
 
   @Test
   @Story("Allure test")
-  void testgg() throws InterruptedException {
+  void testgg() {
 
-    driver.get(url);
-    Thread.sleep(3000);
-    driver.findElement(By.xpath("//div[contains(text(), 'Каталог курсов')]")).click();
-    Thread.sleep(3000);
-    System.out.println(driver.getTitle());
+    mainPage = new MainPage(driver);
 
+    mainPage
+            .openMainPage()
+            .checkTitle()
+            .clickOnCoursesCatalog()
+            .checkTitle();
   }
 
 }

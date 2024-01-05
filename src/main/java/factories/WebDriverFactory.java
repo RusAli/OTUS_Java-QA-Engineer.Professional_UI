@@ -3,6 +3,7 @@ package factories;
 import driver.listener.HighLightElementListener;
 import factories.settings.ChromeSettings;
 import factories.settings.FireFoxSettings;
+import factories.settings.OperaSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
@@ -27,10 +28,11 @@ public class WebDriverFactory implements IFactory<WebDriver> {
         return new EventFiringDecorator<>(listeners.toArray(WebDriverListener[]::new)).decorate(new ChromeSettings().config());
       case "firefox":
         return new EventFiringDecorator<>(listeners.toArray(WebDriverListener[]::new)).decorate(new FireFoxSettings().config());
+      case "opera":
+        return new EventFiringDecorator<>(listeners.toArray(WebDriverListener[]::new)).decorate(new OperaSettings().config());
       default:
         throw new RuntimeException("Browser not supported");
     }
-
 
   }
 
