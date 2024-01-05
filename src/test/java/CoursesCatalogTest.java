@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
 @ExtendWith(UIDriverExtention.class)
-public class CoursesCatalog_Test {
+public class CoursesCatalogTest {
 
   @Driver
   private WebDriver driver;
