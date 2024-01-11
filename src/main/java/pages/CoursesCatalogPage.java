@@ -3,6 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
 
@@ -10,6 +12,16 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
     super(driver);
   }
 
+  @FindBy(xpath = "//label[contains(text(), 'Все направления')]/..//input")
+  WebElement allVectors;
+
+  @FindBy(xpath = "//label[contains(text(), 'Программирование')]/..//input")
+  WebElement programming;
+
+  @FindBy(xpath = "//label[contains(text(), 'Архитектура')]/..//input")
+  WebElement arhitech;
+
+//  id = "cf2f9eb85985b199453dab1c"
   @Step(value = "Проверить заголовок курсов")
   public CoursesCatalogPage checkTitle() {
 
@@ -19,6 +31,21 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
     return this;
   }
 
+  public CoursesCatalogPage markAllVectors() {
+
+    allVectors.click();
+    return this;
+  }
+
+  public CoursesCatalogPage markArhitech() {
+    actions.moveToElement(arhitech).click().perform();
+    return this;
+  }
+
+  public CoursesCatalogPage markProgramming() {
+    actions.moveToElement(programming).click().perform();
+    return this;
+  }
 
 
 }

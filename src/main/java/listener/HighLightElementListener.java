@@ -1,4 +1,4 @@
-package driver.listener;
+package listener;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,9 +12,23 @@ public class HighLightElementListener implements WebDriverListener {
     ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
   }
 
+  private void unHighLightElement(WebDriver driver, WebElement element) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+  }
+
   @Override
   public void afterFindElement(WebDriver driver, By locator, WebElement element) {
+    unHighLightElement(driver,element);
     highLightElement(driver, element);
   }
 
+  @Override
+  public void beforeClick(WebElement element) {
+    WebDriverListener.super.beforeClick(element);
+  }
+
+  @Override
+  public void afterClick(WebElement element) {
+    WebDriverListener.super.afterClick(element);
+  }
 }

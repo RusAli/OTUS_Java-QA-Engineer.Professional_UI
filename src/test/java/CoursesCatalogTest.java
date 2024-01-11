@@ -12,20 +12,25 @@ public class CoursesCatalogTest {
   @Driver
   private WebDriver driver;
 
-  private MainPage mainPage;
-
 
   @Test
   @Story("Allure test")
-  void testgg() {
+  void testgg() throws InterruptedException {
 
-    mainPage = new MainPage(driver);
-
-    mainPage
+    new MainPage(driver)
             .openMainPage()
             .checkTitle()
+            .acceptCookiesPolices()
             .clickOnCoursesCatalog()
-            .checkTitle();
+            .checkTitle()
+            .markProgramming()
+            .markArhitech()
+            .markAllVectors()
+            .markProgramming();
+
+    Thread.sleep(5000);
+
+
   }
 
 }

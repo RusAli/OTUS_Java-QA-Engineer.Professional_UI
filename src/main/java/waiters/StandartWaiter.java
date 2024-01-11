@@ -18,7 +18,7 @@ public class StandartWaiter {
 
 
   public boolean waitForCondition(ExpectedCondition condition) {
-    WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
     try {
       webDriverWait.until(condition);
       return true;
@@ -29,6 +29,10 @@ public class StandartWaiter {
 
   public boolean waitForElementVisible(WebElement element) {
     return waitForCondition(ExpectedConditions.visibilityOf(element));
+  }
+
+  public boolean waitForElementClickable(WebElement element) {
+    return waitForCondition(ExpectedConditions.elementToBeClickable(element));
   }
 
   public boolean waitForElementNotVisible(WebElement element) {

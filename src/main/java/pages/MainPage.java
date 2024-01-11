@@ -11,6 +11,10 @@ public class MainPage extends AbsBasePage<MainPage> {
     super(driver);
   }
 
+  private static final String PAGE_TITLE = "Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям";
+
+  @FindBy(xpath = "//div[contains(text(), 'OK')]/ancestor::button")
+  WebElement legalCookie;
   @FindBy(xpath = "//div[contains(text(), 'Каталог курсов')]")
   WebElement coursesCatalog;
 
@@ -23,7 +27,7 @@ public class MainPage extends AbsBasePage<MainPage> {
   @Step(value = "Проверить заголовок")
   public MainPage checkTitle() {
 
-    Assertions.assertEquals("Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям", driver.getTitle());
+    Assertions.assertEquals(PAGE_TITLE, driver.getTitle());
     return this;
   }
 
@@ -33,6 +37,13 @@ public class MainPage extends AbsBasePage<MainPage> {
     actions.scrollToElement(coursesCatalog).moveToElement(coursesCatalog).click().perform();
 
     return new CoursesCatalogPage(driver);
+  }
+
+  public MainPage acceptCookiesPolices() {
+    standartWaiter.waitForElementClickable(legalCookie);
+    legalCookie.click();
+
+    return this;
   }
 
 

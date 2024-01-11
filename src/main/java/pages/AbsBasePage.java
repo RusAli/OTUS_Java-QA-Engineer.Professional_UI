@@ -10,6 +10,5 @@ public abstract class AbsBasePage<T> extends AbsBaseUtils {
 
   public AbsBasePage(WebDriver driver) {
     super(driver);
-    PageFactory.initElements(driver, this);
   }
 }
