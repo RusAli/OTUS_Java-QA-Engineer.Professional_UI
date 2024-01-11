@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends AbsBasePage<MainPage> {
+
   public MainPage(WebDriver driver) {
     super(driver);
   }
@@ -39,6 +40,7 @@ public class MainPage extends AbsBasePage<MainPage> {
     return new CoursesCatalogPage(driver);
   }
 
+  @Step(value = "Подтвердить куки")
   public MainPage acceptCookiesPolices() {
     standartWaiter.waitForElementClickable(legalCookie);
     legalCookie.click();

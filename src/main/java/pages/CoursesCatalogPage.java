@@ -21,7 +21,6 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
   @FindBy(xpath = "//label[contains(text(), 'Архитектура')]/..//input")
   WebElement arhitech;
 
-//  id = "cf2f9eb85985b199453dab1c"
   @Step(value = "Проверить заголовок курсов")
   public CoursesCatalogPage checkTitle() {
 

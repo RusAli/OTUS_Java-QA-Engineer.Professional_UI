@@ -21,14 +21,4 @@ public class HighLightElementListener implements WebDriverListener {
     unHighLightElement(driver,element);
     highLightElement(driver, element);
   }
-
-  @Override
-  public void beforeClick(WebElement element) {
-    WebDriverListener.super.beforeClick(element);
-  }
-
-  @Override
-  public void afterClick(WebElement element) {
-    WebDriverListener.super.afterClick(element);
-  }
 }
