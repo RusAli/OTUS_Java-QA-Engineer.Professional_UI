@@ -1,16 +1,18 @@
 package pages;
 
-import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
+import annotations.UrlPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@UrlPage("/catalog/courses")
 public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
 
   public CoursesCatalogPage(WebDriver driver) {
     super(driver);
   }
+
+  public static String courseCatalogTitle = "Обучение всех типов по направлению программирование любого уровня продолжительностью от 1 до 15 месяцев";
 
   @FindBy(xpath = "//label[contains(text(), 'Все направления')]/..//input")
   WebElement allVectors;
@@ -21,14 +23,6 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
   @FindBy(xpath = "//label[contains(text(), 'Архитектура')]/..//input")
   WebElement arhitech;
 
-  @Step(value = "Проверить заголовок курсов")
-  public CoursesCatalogPage checkTitle() {
-
-    Assertions.assertEquals("Обучение всех типов по направлению программирование любого уровня продолжительностью от 1 до 15 месяцев",
-            driver.getTitle());
-
-    return this;
-  }
 
   public CoursesCatalogPage markAllVectors() {
 

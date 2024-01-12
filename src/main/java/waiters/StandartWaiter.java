@@ -1,5 +1,6 @@
 package waiters;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -12,30 +13,47 @@ public class StandartWaiter {
 
   private WebDriver driver;
 
+  private final Duration duration = Duration.ofSeconds(5);
+
   public StandartWaiter(WebDriver driver) {
     this.driver = driver;
   }
 
 
   public boolean waitForCondition(ExpectedCondition condition) {
-    WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriverWait webDriverWait = new WebDriverWait(driver, duration);
     try {
       webDriverWait.until(condition);
       return true;
     } catch (Exception ex) {
+      ex.printStackTrace();
       return false;
     }
   }
 
-  public boolean waitForElementVisible(WebElement element) {
-    return waitForCondition(ExpectedConditions.visibilityOf(element));
+  public WebElement waitingForElement(By by) {
+    WebElement element;
+
+    try {
+      waitForElementVisible(by);
+      waitForElementClickable(by);
+      return element = driver.findElement(by);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+
+    return null;
   }
 
-  public boolean waitForElementClickable(WebElement element) {
-    return waitForCondition(ExpectedConditions.elementToBeClickable(element));
+  public boolean waitForElementVisible(By by) {
+    return waitForCondition(ExpectedConditions.visibilityOfElementLocated(by));
   }
 
-  public boolean waitForElementNotVisible(WebElement element) {
-    return waitForCondition(ExpectedConditions.invisibilityOf(element));
+  public boolean waitForElementClickable(By by) {
+    return waitForCondition(ExpectedConditions.elementToBeClickable(by));
+  }
+
+  public boolean waitForElementNotVisible(By by) {
+    return waitForCondition(ExpectedConditions.invisibilityOfElementLocated(by));
   }
 }
