@@ -1,6 +1,7 @@
 package components;
 
 import annotations.Component;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +10,8 @@ import utils.AbsBaseUtils;
 public abstract class AbsBaseComponent<T> extends AbsBaseUtils {
 
   {
-    this.standartWaiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(getComponentLocator()));
+    Assertions.assertTrue(
+            standartWaiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(getComponentLocator())));
   }
 
   public AbsBaseComponent(WebDriver driver) {

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class StandartWaiter {
 
@@ -38,6 +39,19 @@ public class StandartWaiter {
       waitForElementVisible(by);
       waitForElementClickable(by);
       return element = driver.findElement(by);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+
+    return null;
+  }
+
+  public List<WebElement> waitingForElements(By by) {
+    List<WebElement> elements;
+
+    try {
+      waitForElementVisible(by);
+      return elements = driver.findElements(by);
     } catch (Exception ex) {
       ex.printStackTrace();
     }

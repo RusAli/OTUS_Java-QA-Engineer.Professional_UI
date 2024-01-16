@@ -1,9 +1,12 @@
 package pages;
 
 import annotations.UrlPage;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 @UrlPage("/catalog/courses")
 public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
@@ -12,31 +15,22 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
     super(driver);
   }
 
-  public static String courseCatalogTitle = "Обучение всех типов по направлению программирование любого уровня продолжительностью от 1 до 15 месяцев";
+  String vectorsLocator = "//label[contains(text(), '%s')]/..//input";
 
-  @FindBy(xpath = "//label[contains(text(), 'Все направления')]/..//input")
-  WebElement allVectors;
+  String courcesNameLocator = "//section/descendant::div[contains(text(),'%s')]";
 
-  @FindBy(xpath = "//label[contains(text(), 'Программирование')]/..//input")
-  WebElement programming;
+  public CoursesCatalogPage markVectorByName(String name) {
+    WebElement element = driver.findElement(By.xpath(String.format(vectorsLocator, name)));
+    element.click();
 
-  @FindBy(xpath = "//label[contains(text(), 'Архитектура')]/..//input")
-  WebElement arhitech;
-
-
-  public CoursesCatalogPage markAllVectors() {
-
-    allVectors.click();
     return this;
   }
 
-  public CoursesCatalogPage markArhitech() {
-    actions.moveToElement(arhitech).click().perform();
-    return this;
-  }
+  public CoursesCatalogPage checkCourseIsPresentOnPageByName(String name) {
 
-  public CoursesCatalogPage markProgramming() {
-    actions.moveToElement(programming).click().perform();
+    List<WebElement> elements = driver.findElements(By.xpath(String.format(courcesNameLocator, name)));
+    elements.stream().forEach(e -> Assertions.assertTrue(e.getText().contains(name)));
+
     return this;
   }
 

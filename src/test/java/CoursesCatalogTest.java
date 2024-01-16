@@ -23,10 +23,10 @@ public class CoursesCatalogTest {
     new CoursesCatalogPage(driver)
             .open()
             .acceptCookiesPolices()
-            .markAllVectors();
-
+            .markVectorByName("Все направления");
     new CourseSearchComponent(driver)
-            .searchByName(courseName);
+            .searchByName(courseName)
+            .checkCourseIsPresentOnPageByName(courseName);
 
 
     Thread.sleep(5000);
