@@ -1,11 +1,13 @@
 import annotations.Driver;
-import components.CourseSearchComponent;
+import components.standart.CourseSearchComponent;
+import components.standart.PopularCoursesComponent;
 import extensions.UIDriverExtention;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import pages.CoursesCatalogPage;
+import pages.MainPage;
 
 
 @ExtendWith(UIDriverExtention.class)
@@ -15,8 +17,8 @@ public class CoursesCatalogTest {
   private WebDriver driver;
 
   @Test
-  @Story("Проверка фильтра поиска по названию курса")
-  void shouldFindCourseByName() throws InterruptedException {
+  @Story("Проверка фильтра поиска по названию курса на странице Каталог")
+  void shouldFindCourseByNameOnCatalogPage() {
 
     String courseName = "QA Lead";
 
@@ -27,9 +29,19 @@ public class CoursesCatalogTest {
     new CourseSearchComponent(driver)
             .searchByName(courseName)
             .checkCourseIsPresentOnPageByName(courseName);
-
-
-    Thread.sleep(5000);
   }
 
+  @Test
+  @Story("Проверка поиска курса в блоке 'Популярные курсы'")
+  void shouldFindCourseByNameOnPopularSectionOnMainPage() {
+
+    String popularCourseName = "DevRel";
+
+    new MainPage(driver)
+            .open()
+            .acceptCookiesPolices();
+    new PopularCoursesComponent(driver)
+            .clickOnCourseName(popularCourseName)
+            .checkLessonPage(popularCourseName);
+  }
 }

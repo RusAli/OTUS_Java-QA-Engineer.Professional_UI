@@ -1,4 +1,4 @@
-package components;
+package components.standart;
 
 import annotations.Component;
 import org.openqa.selenium.By;
