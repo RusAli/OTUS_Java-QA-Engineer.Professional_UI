@@ -1,6 +1,7 @@
 import annotations.Driver;
 import components.standart.CourseSearchComponent;
 import components.standart.PopularCoursesComponent;
+import components.standart.SpecializationCoursesComponent;
 import extensions.UIDriverExtention;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,27 @@ public class CoursesCatalogTest {
     new PopularCoursesComponent(driver)
             .clickOnCourseName(popularCourseName)
             .checkLessonPage(popularCourseName);
+  }
+
+  @Test
+  @Story("Проверка курс стартующего раньше всех")
+  void shouldFindFirstStartedCourse() {
+
+    new MainPage(driver)
+            .open()
+            .acceptCookiesPolices();
+    new SpecializationCoursesComponent(driver)
+            .getEarliestCourse();
+  }
+
+  @Test
+  @Story("Проверка курс стартующего позже всех")
+  void shouldFindLatestStartedCourse() {
+
+    new MainPage(driver)
+            .open()
+            .acceptCookiesPolices();
+    new SpecializationCoursesComponent(driver)
+            .getLatestCourse();
   }
 }

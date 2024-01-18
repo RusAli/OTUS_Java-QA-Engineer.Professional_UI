@@ -8,7 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.AbsBaseUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class AbsBaseComponent<T> extends AbsBaseUtils {
 
@@ -44,5 +47,22 @@ public abstract class AbsBaseComponent<T> extends AbsBaseUtils {
   public List<WebElement> getComponentElements(String path) {
     return path.startsWith("/") ? standartWaiter.waitingForElements(By.xpath(path)) :
             standartWaiter.waitingForElements(By.cssSelector(path));
+  }
+
+  public LocalDate parseDateFromCourse(String input) {
+
+    String formatted = input
+            .replace("С ", "")
+            .replaceAll("\\bгода\\b", "")
+            .replaceAll(" \\d+ (месяцев|месяца)$", "")
+            .trim();
+
+    if (!formatted.matches("\\d{4}$")) {
+      formatted += " " + LocalDate.now().getYear();
+    }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy").withLocale(new Locale("ru"));
+
+    return LocalDate.parse(formatted, formatter);
   }
 }
