@@ -25,4 +25,5 @@
 + Реализовать движение мыши при помощи и выбор курса при помощи библиотеки Actions
 + 
 >[!IMPORTANT]
->Branch homework1
+>+ Branch [homework1](https://github.com/RusAli/OTUS_Java-QA-Engineer.Professional/tree/homework1)
+>+ Start ```mvn clean test```
