@@ -26,7 +26,6 @@ public abstract class AbsBaseComponent<T> extends AbsBaseUtils {
 
   protected String baseComponentLocator;
 
-
   private By getComponentLocator() {
     Component component = getClass().getAnnotation(Component.class);
 

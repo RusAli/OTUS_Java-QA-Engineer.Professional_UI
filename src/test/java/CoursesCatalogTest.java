@@ -3,7 +3,6 @@ import components.standart.CourseSearchComponent;
 import components.standart.PopularCoursesComponent;
 import components.standart.SpecializationCoursesComponent;
 import extensions.UIDriverExtention;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +17,6 @@ public class CoursesCatalogTest {
   private WebDriver driver;
 
   @Test
-  @Story("Проверка фильтра поиска по названию курса на странице Каталог")
   void shouldFindCourseByNameOnCatalogPage() {
 
     String courseName = "QA Lead";
@@ -33,7 +31,6 @@ public class CoursesCatalogTest {
   }
 
   @Test
-  @Story("Проверка поиска курса в блоке 'Популярные курсы'")
   void shouldFindCourseByNameOnPopularSectionOnMainPage() {
 
     String popularCourseName = "DevRel";
@@ -47,7 +44,6 @@ public class CoursesCatalogTest {
   }
 
   @Test
-  @Story("Проверка курс стартующего раньше всех")
   void shouldFindFirstStartedCourse() {
 
     new MainPage(driver)
@@ -58,7 +54,6 @@ public class CoursesCatalogTest {
   }
 
   @Test
-  @Story("Проверка курс стартующего позже всех")
   void shouldFindLatestStartedCourse() {
 
     new MainPage(driver)

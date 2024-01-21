@@ -1,7 +1,6 @@
 package pages;
 
 import annotations.UrlPage;
-import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -20,13 +19,11 @@ public abstract class AbsBasePage<T> extends AbsBaseUtils {
     super(driver);
   }
 
-  @Step(value = "Открыть страницу")
   public T open() {
     driver.get(getBaseUrl() + getUrlPrefix());
     return (T) page(getClass());
   }
 
-  @Step(value = "Подтвердить куки на странице")
   public T acceptCookiesPolices() {
     standartWaiter.waitingForElement(By.xpath(legalCookieLocator)).click();
     return (T) page(getClass());
