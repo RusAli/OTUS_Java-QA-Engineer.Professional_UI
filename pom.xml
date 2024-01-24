@@ -16,7 +16,7 @@
         <project.build.Encoding>UTF-8</project.build.Encoding>
 
         <!--Plugins-->
-        <surefire.plugin.version>3.1.2</surefire.plugin.version>
+        <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven-checkstyle-plugin>3.1.0</maven-checkstyle-plugin>
@@ -25,7 +25,11 @@
         <!--Dependencies-->
         <webdriver.manager.version>5.6.3</webdriver.manager.version>
         <selenium.java.version>4.16.1</selenium.java.version>
-        <junit.version>5.10.1</junit.version>
+        <junit.version>5.8.1</junit.version>
+        <cucumber-java>5.5.0</cucumber-java>
+        <cucumber-junit-platform-engine>5.5.0</cucumber-junit-platform-engine>
+        <cucumber-guice>5.5.0</cucumber-guice>
+        <guice>5.1.0</guice>
 
         <!--System Properties-->
         <browser>chrome</browser>
@@ -57,6 +61,30 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber-junit-platform-engine}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber-guice}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice}</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -83,24 +111,10 @@
                 <version>${surefire.plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <junit.jupiter.extensions.autodetection.enabled>true
-                        </junit.jupiter.extensions.autodetection.enabled>
                         <browser>${browser}</browser>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemPropertyVariables>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-api</artifactId>
-                        <version>${junit.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.junit.jupiter</groupId>
-                        <artifactId>junit-jupiter-engine</artifactId>
-                        <version>${junit.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <plugin>
