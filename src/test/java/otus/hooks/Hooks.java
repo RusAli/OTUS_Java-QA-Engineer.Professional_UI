@@ -15,6 +15,7 @@ public class Hooks {
 
     WebDriver driver = diScooped.getDriver();
     if (driver != null) {
+      driver.close();
       driver.quit();
     }
   }

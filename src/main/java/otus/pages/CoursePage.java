@@ -1,6 +1,7 @@
 package otus.pages;
 
 import com.google.inject.Inject;
+import org.openqa.selenium.By;
 import otus.annotations.UrlPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +26,9 @@ public class CoursePage extends AbsBasePage<CoursePage> {
   }
 
   public void checkLessonPage(String name) {
+
+    standartWaiter.waitingForElement(By.xpath("//h1"));
+
     Assertions.assertEquals(courseName.getText(), name);
   }
 }

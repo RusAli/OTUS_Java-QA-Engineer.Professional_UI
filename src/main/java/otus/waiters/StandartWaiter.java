@@ -51,6 +51,7 @@ public class StandartWaiter {
 
     try {
       waitForElementVisible(by);
+      waitForElementClickable(by);
       return elements = driver.findElements(by);
     } catch (Exception ex) {
       ex.printStackTrace();

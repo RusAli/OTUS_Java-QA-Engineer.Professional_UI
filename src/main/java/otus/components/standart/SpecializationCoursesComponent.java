@@ -1,5 +1,6 @@
 package otus.components.standart;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import otus.annotations.Component;
@@ -16,13 +17,13 @@ public class SpecializationCoursesComponent extends AbsBaseComponent<Specializat
 
   private DiScooped diScooped;
 
+  @Inject
   public SpecializationCoursesComponent(DiScooped diScooped) {
     super(diScooped);
     this.diScooped = diScooped;
   }
 
   String startCourseLocator = baseComponentLocator + "//span[@class='sc-12yergf-7 dPBnbE']";
-
 
   public CoursePage getEarliestCourse() {
 
@@ -69,6 +70,4 @@ public class SpecializationCoursesComponent extends AbsBaseComponent<Specializat
 
     return new CoursePage(diScooped);
   }
-
-
 }
