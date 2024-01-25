@@ -28,6 +28,8 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
 
   public CoursesCatalogPage checkCourseIsPresentOnPageByName(String name) {
 
+    standartWaiter.waitingForElements(By.xpath(String.format(courcesNameLocator, name)));
+
     List<WebElement> elements = driver.findElements(By.xpath(String.format(courcesNameLocator, name)));
     elements.stream().forEach(e -> Assertions.assertTrue(e.getText().contains(name)));
 
