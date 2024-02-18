@@ -33,7 +33,7 @@ public class CoursesCatalogTest {
   @Test
   void shouldFindCourseByNameOnPopularSectionOnMainPage() {
 
-    String popularCourseName = "DevRel";
+    String popularCourseName = "MLOps";
 
     new MainPage(driver)
             .open()
